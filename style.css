@@ -1,0 +1,63 @@
+body {
+  font-family: Consolas, "Droid Sans Mono", monospace;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: black;
+}
+::-webkit-scrollbar-thumb {
+  background: gray;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: darkgray;
+}
+
+::selection {
+  background: purple;
+  color: white;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-3px); }
+  75%      { transform: translateX(3px); }
+}
+.shake {
+  animation: shake 0.2s ease-in-out;
+}
+
+/* Tombol demo (Safe, Warning, High Risk) */
+.demo-btn {
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  border: 1px solid gray;
+  background-color: black;
+  color: lightgray;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+.demo-btn:hover {
+  background-color: dimgray;
+  color: white;
+}
+
+/* Progress bar (garis skor risiko) */
+.risk-bar-fill {
+  transition: width 0.3s ease-out;
+}
+
+/* Tombol hapus riwayat */
+.history-delete {
+  padding: 0.2rem;
+  border-radius: 2px;
+  color: gray;
+  transition: color 0.1s;
+}
+.history-delete:hover {
+  color: white;
+}

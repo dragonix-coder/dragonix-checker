@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dragonix-Checker</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!--Custom styles-->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="min-h-screen bg-black text-white antialiased">
+
+  <!--HEADER-->
+  <header class="sticky top-0 z-20 border-b border-gray-700 bg-black">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 flex items-center justify-center text-xl">
+          <img src="Dragonix-Checker.png">
+        </div>
+        <div>
+          <h1 class="text-lg font-bold leading-tight">Dragonix-Checker</h1>
+          <p class="text-xs text-gray-400">Check tokens before you swap</p>
+        </div>
+      </div>
+      <span class="text-xs px-2 py-1 bg-gray-800 text-gray-300 border border-gray-600">
+        Read-only
+      </span>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="max-w-4xl mx-auto px-4 py-8 space-y-6">
+
+    <section class="text-center space-y-2 py-4">
+      <h2 class="text-2xl sm:text-3xl font-bold">
+        Before you swap, check first.
+      </h2>
+      <p class="text-gray-400 max-w-xl mx-auto text-sm">
+        Paste any token contract address and get a quick risk summary.
+        No wallet connection, no transaction.
+      </p>
+    </section>
+
+    <!-- CHECKER CARD -->
+    <section class="bg-gray-900 border border-gray-700 p-5 space-y-4">
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Network -->
+        <div class="md:col-span-1">
+          <label for="chain-select" class="block text-sm text-gray-300 mb-1">Network</label>
+          <select
+            id="chain-select"
+            class="w-full px-3 py-2 bg-black border border-gray-600 text-white text-sm focus:border-purple-600 focus:outline-none rounded-sm"
+          ></select>
+        </div>
+
+        <!-- Address -->
+        <div class="md:col-span-2">
+          <label for="address-input" class="block text-sm text-gray-300 mb-1">
+            Token contract address
+          </label>
+          <input
+            id="address-input"
+            type="text"
+            spellcheck="false"
+            autocomplete="off"
+            placeholder="Paste address (0x... or Solana)"
+            class="w-full px-3 py-2 bg-black border border-gray-600 text-white text-sm font-mono placeholder:text-gray-500 focus:border-purple-600 focus:outline-none rounded-sm"
+          />
+        </div>
+      </div>
+
+      <!-- shortcut -->
+      <div class="flex flex-wrap items-center gap-2 text-xs">
+        <span class="text-gray-500">Demo address:</span>
+        <button type="button" class="demo-btn" data-address="0x1111111111111111111111111111111111111111">
+          Safe token
+        </button>
+        <button type="button" class="demo-btn" data-address="0x2222222222222222222222222222222222222222">
+          Warning
+        </button>
+        <button type="button" class="demo-btn" data-address="0x3333333333333333333333333333333333333333">
+          High risk
+        </button>
+      </div>
+
+      <!-- Action row -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2">
+        <p class="text-xs text-gray-500">
+          Tip: EVM addresses start with 0x and are 42 characters long.
+        </p>
+        <button
+          id="check-btn"
+          type="button"
+          class="inline-flex items-center justify-center gap-2 px-8 py-2 bg-purple-900 hover:bg-purple-800 disabled:bg-gray-700 disabled:cursor-not-allowed text-white text-sm font-semibold rounded-sm border border-purple-700"
+        >
+          <span class="btn-text">Check Token</span>
+          <span class="btn-spinner hidden w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin"></span>
+        </button>
+      </div>
+
+      <!-- Error message -->
+      <p id="error-message" class="hidden text-sm text-white bg-gray-800 border border-gray-600 px-3 py-2 rounded-sm"></p>
+    </section>
+
+    <!--RESULT -->
+    <section id="result-section" class="hidden"></section>
+
+    <!-- HISTORY -->
+    <section class="bg-gray-900 border border-gray-700 p-5 space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-md font-semibold">Recent checks</h3>
+          <p class="text-xs text-gray-400">Saved locally in your browser.</p>
+        </div>
+        <button
+          id="clear-history-btn"
+          type="button"
+          class="text-sm text-gray-400 hover:text-white transition"
+        >
+          Clear all
+        </button>
+      </div>
+      <div id="history-list" class="space-y-2"></div>
+    </section>
+
+    <p class="text-xs text-gray-500 text-center py-2">
+      Dragonix-Checker is an educational tool.
+    </p>
+  </main>
+
+  <!--  FOOTER -->
+  <footer class="border-t border-gray-700 mt-8">
+    <div class="max-w-4xl mx-auto px-4 py-4 text-center text-xs text-gray-500">
+      <p>Dragonix-Checker &middot; Built by engineering student &middot; <span id="footer-year"></span></p>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
